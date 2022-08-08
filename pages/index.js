@@ -12,7 +12,7 @@ export default function Home() {
   useEffect(() => {
     async function fetchRecords() {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_HOST}/api/history/findRecords`
+        `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/history/findRecords`
       );
       const records = await response.json();
       if (records.error) {
@@ -32,7 +32,7 @@ export default function Home() {
   const handleSave = async (result, time) => {
     setInputMessage("Saving results to database...");
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_HOST}/api/history/createRecord`,
+      `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/history/createRecord`,
       {
         method: "POST",
         headers: {
@@ -75,7 +75,7 @@ export default function Home() {
     }
 
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_HOST}/api/${kValue}`,
+      `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/${kValue}`,
       { method: "GET" }
     );
 
@@ -93,7 +93,7 @@ export default function Home() {
 
   const deleteRow = async (id) => {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_HOST}/api/history/${id}`,
+      `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/history/${id}`,
       { method: "DELETE" }
     );
     const record = await response.json();

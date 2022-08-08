@@ -7,4 +7,5 @@ A. How to run:
 B. Frameworks/Libraries used:
   1) NextJS for application (provides backend with React as frontend);
   2) TailwindCSS for styling;
-  3) Jest and React Testing Library for unit testing.
+  3) Jest and React Testing Library for unit testing;
+  4) Prisma as an ORM, with Heroku PostgreSQL database.

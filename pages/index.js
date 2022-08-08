@@ -11,9 +11,7 @@ export default function Home() {
 
   useEffect(() => {
     async function fetchRecords() {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/history/findRecords`
-      );
+      const response = await fetch(`/api/history/findRecords`);
       const records = await response.json();
       if (records.error) {
         setDbMessage(records.error);
@@ -31,16 +29,13 @@ export default function Home() {
 
   const handleSave = async (result, time) => {
     setInputMessage("Saving results to database...");
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/history/createRecord`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ number: Number(kValue), result, time }),
-      }
-    );
+    const response = await fetch(`/api/history/createRecord`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ number: Number(kValue), result, time }),
+    });
     const record = await response.json();
     setInputMessage(null);
 
@@ -74,10 +69,7 @@ export default function Home() {
       return;
     }
 
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/${kValue}`,
-      { method: "GET" }
-    );
+    const response = await fetch(`/api/${kValue}`, { method: "GET" });
 
     if (response.status === 200) {
       const { result, time } = await response.json();
@@ -92,10 +84,7 @@ export default function Home() {
   };
 
   const deleteRow = async (id) => {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/history/${id}`,
-      { method: "DELETE" }
-    );
+    const response = await fetch(`/api/history/${id}`, { method: "DELETE" });
     const record = await response.json();
     if (record.error) {
       setDbMessage(record.error);

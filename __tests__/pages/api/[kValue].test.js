@@ -3,7 +3,7 @@ import handler from "../../../pages/api/[kValue]";
 
 beforeEach(() => {
   jest.restoreAllMocks(); // clears spyOn
-  jest.resetAllMocks(); // clears createSession
+  jest.resetAllMocks();
 });
 
 describe("/api/[kValue]", () => {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { screen, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import InputNumberWithButton from "../components/InputNumberWithButton";
+import InputNumberWithButton from "../../components/InputNumberWithButton";
 
 describe("InputNumberWithButton", () => {
   it("should render input and button", () => {

@@ -9,3 +9,5 @@ B. Frameworks/Libraries used:
   2) TailwindCSS for styling;
   3) Jest and React Testing Library for unit testing;
   4) Prisma as an ORM, with Heroku PostgreSQL database.
+
+Note: as deployment was made on Vercel, every API has a time limit of 5 seconds. So in order to compute big numbers (approximately >=10^6), run the app in development environment.

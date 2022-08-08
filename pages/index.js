@@ -102,11 +102,25 @@ export default function Home() {
       return;
     }
 
-    setRecords(records.filter((record) => record.id !== id));
+    const newRecords = records.filter((record) => record.id !== id);
+
+    newRecords.length > 0 ? setRecords(newRecords) : setRecords(null),
+      setDbMessage("No history found.");
   };
 
   return (
-    <div className="justify-center flex flex-col">
+    <div className="justify-center items-center flex flex-col">
+      <div className="pt-2 text-center w-1/2 text-gray-600">
+        <h1>
+          This application computes, for a given integer{" "}
+          <span className="font-semibold italic">k</span>, how many positive
+          integers <span className="font-semibold italic">n</span> smaller than{" "}
+          <span className="font-semibold italic">k</span> are there, for{" "}
+          <span className="font-semibold italic">n</span> and{" "}
+          <span className="font-semibold italic">n + 1</span> with the same
+          number of positive divisors.
+        </h1>
+      </div>
       <div className="w-4/5 self-center pt-5 flex flex-col h-44">
         <InputNumberWithButton
           onClick={handleClick}

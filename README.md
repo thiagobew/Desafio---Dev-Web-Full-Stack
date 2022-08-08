@@ -1,4 +1,4 @@
-A. How to run:
+A. How to run (requires NodeJS and NPM):
   1) Install dependencies with "npm i";
   2) Execute the script "npm run dev";
   3) Open browser at "http://localhost:3000";

@@ -58,7 +58,7 @@ const HistoryTable = ({ records, deleteRecord }) => {
                   <tr className="bg-blue-500 text-center">
                     <Header title="Number" />
                     <Header title="Result" />
-                    <Header title="Time (ms)  " />
+                    <Header title="Time (ms)" />
                   </tr>
                 </thead>
                 <tbody>

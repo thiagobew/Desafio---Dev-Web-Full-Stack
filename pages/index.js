@@ -13,22 +13,22 @@ export default function Home() {
     async function fetchRecords() {
       const response = await fetch(`/api/history/findRecords`);
       const records = await response.json();
+
       if (records.error) {
         setDbMessage(records.error);
         return;
       }
 
-      if (records.length !== 0) {
-        setRecords(records);
-      } else {
-        setDbMessage("No history found.");
-      }
+      records.length !== 0
+        ? setRecords(records)
+        : setDbMessage("No history found.");
     }
     fetchRecords();
   }, []);
 
   const handleSave = async (result, time) => {
     setInputMessage("Saving results to database...");
+
     const response = await fetch(`/api/history/createRecord`, {
       method: "POST",
       headers: {
@@ -36,6 +36,7 @@ export default function Home() {
       },
       body: JSON.stringify({ number: Number(kValue), result, time }),
     });
+
     const record = await response.json();
     setInputMessage(null);
 
@@ -64,15 +65,15 @@ export default function Home() {
     return true;
   };
 
-  const checkErrorsKValueAPI = (response) => {
+  const noErrorsKValueAPI = (response) => {
     if (!response.ok) {
       // to treat production API timeout error
       response.status === 504
         ? setInputMessage("Processing took too long!")
         : setInputMessage(response.error);
-      return true;
+      return false;
     }
-    return false;
+    return true;
   };
 
   const handleClick = async () => {
@@ -82,7 +83,7 @@ export default function Home() {
 
     const response = await fetch(`/api/${kValue}`, { method: "GET" });
 
-    if (!checkErrorsKValueAPI(response)) {
+    if (noErrorsKValueAPI(response)) {
       const { result, time } = await response.json();
 
       setAnswer({ result, time });
@@ -93,6 +94,7 @@ export default function Home() {
   const deleteRow = async (id) => {
     const response = await fetch(`/api/history/${id}`, { method: "DELETE" });
     const record = await response.json();
+
     if (record.error) {
       setDbMessage(record.error);
       return;

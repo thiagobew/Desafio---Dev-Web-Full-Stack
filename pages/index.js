@@ -64,6 +64,17 @@ export default function Home() {
     return true;
   };
 
+  const checkErrorsKValueAPI = (response) => {
+    if (response.error) {
+      // to treat production API timeout error
+      response.status === 504
+        ? setInputMessage("Processing took too long!")
+        : setInputMessage(response.error);
+      return true;
+    }
+    return false;
+  };
+
   const handleClick = async () => {
     if (!checkInputAndClearMessages()) {
       return;
@@ -71,15 +82,11 @@ export default function Home() {
 
     const response = await fetch(`/api/${kValue}`, { method: "GET" });
 
-    if (response.status === 200) {
+    if (!checkErrorsKValueAPI(response)) {
       const { result, time } = await response.json();
 
       setAnswer({ result, time });
       handleSave(result, time);
-    } else {
-      const { error } = await response.json();
-
-      setInputMessage(error);
     }
   };
 

@@ -65,6 +65,7 @@ export default function Home() {
   };
 
   const checkErrorsKValueAPI = (response) => {
+    console.log(response);
     if (response.error) {
       // to treat production API timeout error
       response.status === 504

@@ -65,7 +65,7 @@ export default function Home() {
   };
 
   const checkErrorsKValueAPI = (response) => {
-    if (response.error) {
+    if (!response.ok) {
       // to treat production API timeout error
       response.status === 504
         ? setInputMessage("Processing took too long!")
